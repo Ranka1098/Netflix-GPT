@@ -6,6 +6,10 @@
 - install react-router version 6
 - connect to github
 - install react-icons
+- install firebase setup
+- deploying our app to production
+- create signup user account
+
 # Features:
 
 - login / signup page
@@ -22,5 +26,5 @@
 
 # Netflex + Gpt
 
-    - searchBar
+    - search-Bar
     - Movie Suggestion

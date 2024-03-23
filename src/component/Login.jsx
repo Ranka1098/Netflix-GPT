@@ -4,6 +4,11 @@ import { checkValidate } from "../utils/Validate";
 import netflix from "../assets/netflix.jpg";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/Firebase";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -17,12 +22,48 @@ const Login = () => {
   const handleClicked = () => {
     //validate the form
     const message = checkValidate(email.current.value, password.current.value);
-    // const validEmail = checkValidate(email.current.value);
-    // const validPassword = checkValidate(password.current.value);
-    // // console.log(email.current.value);
-    // console.log(password.current.value);
-    setErrMessage(message)
-    
+    setErrMessage(message);
+    if (message) return;
+
+    // first check this is sign in  form or sign up form
+    if (!isSignIn) {
+      //SignUp logic
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          console.log(user);
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrMessage(errorCode + " " + errorMessage);
+          // ..
+        });
+    } else {
+      // SignIn Logic
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrMessage(errorMessage + " " + errorCode);
+        });
+    }
   };
 
   const handleToggleSignInForm = () => {
@@ -33,7 +74,7 @@ const Login = () => {
       {/* logo */}
       <Header />
       {/* img in back ground */}
-      <div className="w-full absolute  bg-cover bg-center bg-no-repeat ">
+      <div className="w-full h-screen absolute  bg-cover bg-center bg-no-repeat ">
         <img alt="" src={netflix} />
       </div>
       {/* login form*/}
@@ -64,26 +105,32 @@ const Login = () => {
           />
 
           {/* password */}
-          <label>password</label>
-          <input
-            ref={password}
-            type={passShow ? "password" : "text"}
-            autoComplete="current-password"
-            placeholder="password here..."
-            className="-mt-3 bg-gray-600 px-3 py-2"
-          />
-          {/* 
-          <button
-            onClick={() => setPassShow(!passShow)}
-            className="absolute right-10 top-[45%]"
-          >
-            {passShow ? <FaEyeSlash /> : <FaEye />}
-          </button> */}
+          <div className="relative flex flex-col gap-4">
+            <label>password</label>
+            <input
+              ref={password}
+              type={passShow ? "password" : "text"}
+              autoComplete="current-password"
+              placeholder="password here..."
+              className="-mt-3 bg-gray-600 px-3 py-2"
+            />
+
+            <button
+              onClick={() => setPassShow(!passShow)}
+              className="absolute right-5 top-[55%]"
+            >
+              {passShow ? (
+                <FaEyeSlash className="text-xl" />
+              ) : (
+                <FaEye className="text-xl" />
+              )}
+            </button>
+          </div>
 
           <p>
             <input type="checkbox" className="cursor-pointer" /> Remember me
           </p>
-          <p className="text-red-600 text-mmd">{errMessage}</p>
+          <p className="text-red-600 text-md ">{errMessage}</p>
           <button
             className="bg-[#E50914] rounded-md py-2 -mt-2 my-1"
             onClick={handleClicked}
