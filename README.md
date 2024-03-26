@@ -14,6 +14,8 @@
 - implimnet SignOut
 - update profile
 - fetch TMDB Movies Api
+- bug fix -if the user not logged in redirect /browse to login page and vice versa
+- unsubscribe to the onAuthStateChanged() callback
 # Features:
 
 - login / signup page
