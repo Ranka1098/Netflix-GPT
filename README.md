@@ -11,6 +11,9 @@
 - create signup user account
 - impliment signin user api
 - created Redux store with userSlice
+- implimnet SignOut
+- update profile
+- fetch TMDB Movies Api
 # Features:
 
 - login / signup page

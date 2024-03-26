@@ -7,8 +7,13 @@ import { FaEyeSlash } from "react-icons/fa6";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/Firebase";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/UserSlice";
+import { current } from "@reduxjs/toolkit";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -18,6 +23,9 @@ const Login = () => {
 
   const email = useRef(null);
   const password = useRef(null);
+  const name = useRef(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleClicked = () => {
     //validate the form
@@ -36,7 +44,33 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
+          updateProfile(user, {
+            displayName: name.current.value,
+            photoURL:
+              "https://images.unsplash.com/photo-1514978317271-63c845d39beb?q=80&w=1372&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          })
+            .then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+              // Profile updated!
+              navigate("/browse");
+              // ...
+            })
+            .catch((error) => {
+              // An error occurred
+              setErrMessage(error);
+              // ...
+            });
+
           console.log(user);
+
           // ...
         })
         .catch((error) => {
@@ -56,6 +90,8 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
+
+          navigate("/browse");
           // ...
         })
         .catch((error) => {
@@ -89,6 +125,7 @@ const Login = () => {
               <label>UserName</label>
               <input
                 type="text"
+                ref={name}
                 placeholder="Full Name of user"
                 className=" bg-gray-600 px-3 py-2 flex flex-col w-full"
               />
