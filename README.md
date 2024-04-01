@@ -16,6 +16,10 @@
 - fetch TMDB Movies Api
 - bug fix -if the user not logged in redirect /browse to login page and vice versa
 - unsubscribe to the onAuthStateChanged() callback
+- Add hardcoaded valuse to the constant file
+- register to the TMDb Api
+- get data from now_playing movies
+- create a custom hook foe NowPlayingMovies
 # Features:
 
 - login / signup page
