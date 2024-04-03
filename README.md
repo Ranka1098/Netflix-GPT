@@ -34,6 +34,16 @@
     - title & description
   - movies list vetically scrollable
 
+# structure the Browse page
+- the browse page ui devide into two part
+- main container
+    - movie trailer in backGround
+    - running video title
+- secondary container
+    - movieslist * n
+        -movies card * n
+
+        
 # Netflex + Gpt
 
     - search-Bar

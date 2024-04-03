@@ -1,16 +1,15 @@
 import { useEffect } from "react";
 import { addNowPalyingMovies } from "../utils/movieSlice";
 import { useDispatch } from "react-redux";
-import { Now_Playing } from "../utils/constant";
+import {  Now_Playing_Api_link } from "../utils/constant";
 
 const useNowPlayingMovies = () => {
   const dispatch = useDispatch();
 
   // ---make api call-----------
   const getNowPlayingMovies = async () => {
-    const response = await fetch(Now_Playing);
+    const response = await fetch(Now_Playing_Api_link);
     const result = await response.json();
-    console.log(result.results);
     dispatch(addNowPalyingMovies(result.results));
   };
 

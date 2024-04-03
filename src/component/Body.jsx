@@ -18,6 +18,7 @@ const BodyRouter = createBrowserRouter([
   {
     path: "/",
     element: <BodyLayout />,
+   
   },
   {
     path: "/browse",
