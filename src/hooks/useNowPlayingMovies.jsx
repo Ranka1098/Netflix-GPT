@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { addNowPalyingMovies } from "../utils/movieSlice";
 import { useDispatch } from "react-redux";
-import {  Now_Playing_Api_link } from "../utils/constant";
+import { Now_Playing_Api_link } from "../utils/constant";
 
 const useNowPlayingMovies = () => {
   const dispatch = useDispatch();
@@ -10,6 +10,7 @@ const useNowPlayingMovies = () => {
   const getNowPlayingMovies = async () => {
     const response = await fetch(Now_Playing_Api_link);
     const result = await response.json();
+    console.log("top rated", result);
     dispatch(addNowPalyingMovies(result.results));
   };
 

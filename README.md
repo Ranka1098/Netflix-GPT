@@ -20,6 +20,14 @@
 - register to the TMDb Api
 - get data from now_playing movies
 - create a custom hook foe NowPlayingMovies
+- created moviesSlice
+- updated store with movieData
+- planning conatainer secondary conatiner
+- custom hook for trailer video
+- update store with video data
+- emadded the youtube video and make it autoplay and mute
+- build in secondary component
+
 # Features:
 
 - login / signup page
@@ -35,15 +43,19 @@
   - movies list vetically scrollable
 
 # structure the Browse page
+
 - the browse page ui devide into two part
 - main container
-    - movie trailer in backGround
-    - running video title
+  - movie trailer in backGround
+  - running video title
 - secondary container
-    - movieslist * n
-        -movies card * n
+  - movieslist _ n
+    -movies card _ n
 
-        
+- secondary container
+  -multiple movielist and list have multiple card
+  
+
 # Netflex + Gpt
 
     - search-Bar
