@@ -10,7 +10,6 @@ const useUpComingMovies = () => {
   const getUpComingMovies = async () => {
     const response = await fetch(UpComing_Api_link);
     const result = await response.json();
-    console.log("up coming", result.results);
     dispatch(addUpComingMovies(result.results));
   };
 

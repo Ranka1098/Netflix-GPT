@@ -10,7 +10,6 @@ const useNowPlayingMovies = () => {
   const getNowPlayingMovies = async () => {
     const response = await fetch(Now_Playing_Api_link);
     const result = await response.json();
-    console.log("top rated", result);
     dispatch(addNowPalyingMovies(result.results));
   };
 

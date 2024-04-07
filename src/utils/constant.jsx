@@ -14,5 +14,8 @@ export const TopRated_Api_link =
   "https://api.themoviedb.org/3/movie/top_rated?api_key=b43dc4d3d9df39f4de949d33f30a488e";
 export const IMG_CDN_URl = "https://image.tmdb.org/t/p/w500/";
 
-
-
+export const Supported_lang = [
+  { identifire: "en", name: "English" },
+  { identifire: "hindi", name: "Hindi" },
+  { identifire: "spanish", name: "Spanish" },
+];

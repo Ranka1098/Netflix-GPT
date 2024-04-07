@@ -41,7 +41,10 @@
     -trailer in backgraound
     - title & description
   - movies list vetically scrollable
+  - create custom hooks for movie -NowPlaying,Popular, UpComing ,topRated
 
+# Gpt Search Feature
+- 
 # structure the Browse page
 
 - the browse page ui devide into two part

@@ -10,7 +10,6 @@ const useTopRatedMovies = () => {
   const getTopRatedMovies = async () => {
     const response = await fetch(TopRated_Api_link);
     const result = await response.json();
-    console.log("top rated", result);
     dispatch(addTopRatedMovies(result.results));
   };
 
